@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style></style>
+    <title>Slot Game</title>
+</head>
+<body>
+    <script>
+"use strict";
+
+let reelSet1 = ['10', 'J ', 'A ', 'A ', 'Q ', '10', 'K ', 'Q ', 'J ', '10', 'J ', 'K ', 'Q ', 'A ', '10'];
+let reelSet2 = ['Q ', '10', 'A ', 'K ', 'A ', 'J ', 'K ', 'J ', 'Q ', 'A ', '10', 'J ', 'A ', 'J ', 'Q '];
+let reelSet3 = ['A ', 'J ', 'Q ', 'A ', '10', 'J ', '10', 'K ', '10', 'Q ', 'A ', 'A ', 'K ', 'J ', '10'];
+
+let payouts = [
+        {symbol: 'A', payout: 100},
+        {symbol: 'K', payout: 80},
+        {symbol: 'Q', payout: 50},
+        {symbol: 'J', payout: 30},
+        {symbol: '10', payout: 10},
+];
+
+let currentSpinReel1;
+let currentSpinReel2;
+let currentSpinReel3;
+
+function getStopPosition(reelSet) {
+    let randomNumber;
+    do { randomNumber = Math.random() * 100; } while (randomNumber > 10);
+    return reelSet.slice(randomNumber, randomNumber + 3);
+}
+function getSpinResult() {
+    currentSpinReel1 = getStopPosition(reelSet1);
+    currentSpinReel2 = getStopPosition(reelSet2);
+    currentSpinReel3 = getStopPosition(reelSet3);
+}
+function checkSpinResult() {
+    let resultMessage = '';
+    if (currentSpinReel1[0] == currentSpinReel2[0] && currentSpinReel2[0] == currentSpinReel3[0]) {
+        resultMessage += `Line 1 Win!\n`;
+    }
+    if (currentSpinReel1[1] == currentSpinReel2[1] && currentSpinReel2[1] == currentSpinReel3[1]) {
+        resultMessage += `Line 2 Win!\n`;
+    }
+    if (currentSpinReel1[2] == currentSpinReel2[2] && currentSpinReel2[2] == currentSpinReel3[2]) {
+        resultMessage += `Line 3 Win!\n`;
+    } else resultMessage += 'Good Luck next time!';
+    return resultMessage;
+}
+
+getSpinResult();
+
+alert(`
+${currentSpinReel1[0]} | ${currentSpinReel2[0]} | ${currentSpinReel3[0]}
+${currentSpinReel1[1]} | ${currentSpinReel2[1]} | ${currentSpinReel3[1]}
+${currentSpinReel1[2]} | ${currentSpinReel2[2]} | ${currentSpinReel3[2]}
+
+${checkSpinResult()}`);
+
+// добавить зацикленность рилл сетов
+        </script>
+</body>    
+</html>
