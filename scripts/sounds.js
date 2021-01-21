@@ -5,5 +5,5 @@ function playBackgroundSound() {
 }
 
 window.addEventListener('click', function() {
-    //playBackgroundSound();
+    // playBackgroundSound();
 });

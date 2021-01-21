@@ -1,65 +1,117 @@
-let ctx = document.querySelector('#canvas').getContext('2d');
+var images = [];
 
-let gameParameters = {
-    reelWidth: 0,
+function preloadImages() {
+    for (var i = 0; i < arguments.length; i++) {
+        images[i] = new Image();
+        images[i].src = preloadImages.arguments[i];
+    }
 }
 
-function drawGameReels() {
+let displaySymbolsView = [[0, 1, 2, 3, 4],[0, 1, 2, 3, 4],[0, 1, 2, 3, 4]];
+
+preloadImages('media/symbols/scatter.png',
+    'media/symbols/T1.png',
+    'media/symbols/T2.png',
+    'media/symbols/T3.png',
+    'media/symbols/T4.png',
+    'media/symbols/T5.png');
+
+let ctx = document.querySelector('#canvas').getContext('2d');
+let gameParameters = {
+    reelWidth: 0,
+    lineWidth: 5,
+}
+
+const drawGameReels = () => {
     let windowWidth = document.body.clientWidth;
-    //let windowHeight = document.body.clientHeight;
     let reelWidth = windowWidth * 0.6 / 5;
     gameParameters.reelWidth = reelWidth;
 
     // prepare canvas with responsive size
-    canvas.style.width = `${reelWidth * 5}px`;
-    canvas.style.height = `${reelWidth * 3}px`;
-    console.log(reelWidth);
+    canvas.width = reelWidth * 5;
+    canvas.height = reelWidth * 3;
 
     // draw reels area
     ctx.beginPath();
     ctx.globalAlpha = 0.5;
-    ctx.fillRect(0, 0, reelWidth * 5, reelWidth * 3);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // draw reels dividers
     let drawReelWidth = 0;
-    var lineWidth = 5;
+    ctx.lineWidth = gameParameters.lineWidth;
     ctx.strokeStyle = 'white';
-    ctx.lineWidth = lineWidth;
     ctx.shadowBlur = 10;
     ctx.shadowColor = "white";
-    //let reelWidth = 150;
     for (let i = 0; i < 4; i++) {
         drawReelWidth += reelWidth;
         ctx.beginPath();
-        ctx.moveTo(drawReelWidth - lineWidth / 2, 0);
-        ctx.lineTo(drawReelWidth - lineWidth / 2, reelWidth * 3);
+        ctx.moveTo(drawReelWidth - gameParameters.lineWidth / 2, 0);
+        ctx.lineTo(drawReelWidth - gameParameters.lineWidth / 2, reelWidth * 3);
         ctx.stroke();
     }
 }
-drawGameReels();
 
-function drawSymbol(symbolImage, positionX, positionY) {
+window.addEventListener('resize', function () {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawGameReels();
+    displaySymbols();
+});
+
+
+const drawSymbol = (symbolImage, reel, row) => {
+    let coordX = reel * gameParameters.reelWidth + gameParameters.lineWidth;
+    let coordY = row * gameParameters.reelWidth;
+
     let newSymbol = new Image();
-    newSymbol.onload = function () {
-        ctx.drawImage(newSymbol, positionX, positionY, gameParameters.reelWidth * 0.9, gameParameters.reelWidth * 0.9);
-        //    ctx.beginPath();
-        //    ctx.stroke();
-    };
     ctx.globalAlpha = 1;
     newSymbol.src = symbolImage;
+    newSymbol.onload = function () {
+        ctx.drawImage(newSymbol, coordX, coordY, gameParameters.reelWidth * 0.9, gameParameters.reelWidth * 0.9);
+        ctx.beginPath();
+        ctx.stroke();
+    };
 }
 
-//drawSymbol('media/symbols/scatter.png', (reelWidth - (reelWidth * 0.9) - lineWidth / 2) / 2, 0);
+const displaySymbols = async () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawGameReels();
 
-// let i = 0;
-// let interval = setInterval(function() {
-//     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-//     drawGameReels();
-//     drawSymbol('media/symbols/scatter.png', 0, i);
-//     i++;
-// }, 100);
+    const view = displaySymbolsView;
+    const symbolsInfo = await getSymbolsData();
+    const getSymbolUrlById = (id) => {
+        return symbolsInfo[id].link;
+    };
 
-// window.addEventListener('resize', function () {
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     drawGameReels();
-// });
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 5; j++) {
+            let symbolImageURL = getSymbolUrlById(view[i][j]);
+            let reel = j;
+            let row = i;
+            drawSymbol(symbolImageURL, reel, row);
+        }
+    }
+}
+
+const displayNewSpinSymbols = async () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawGameReels();
+
+    const view = await getSymbolsView();
+    displaySymbolsView = view;
+    const symbolsInfo = await getSymbolsData();
+    const getSymbolUrlById = (id) => {
+        return symbolsInfo[id].link;
+    };
+
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 5; j++) {
+            let symbolImageURL = getSymbolUrlById(view[i][j]);
+            let reel = j;
+            let row = i;
+            drawSymbol(symbolImageURL, reel, row);
+        }
+    }
+}
+
+drawGameReels();
+displaySymbols();
