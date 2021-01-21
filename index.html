@@ -12,60 +12,37 @@
 <body>
     <div class="wrapper">
     <header>
-        <h1>Space Knapweed™</h1>
+        <h1>Space&nbsp;Knapweed™</h1>
     </header>
 
     <main>
-        <!-- <section class="flex-container">
-            <div id="reel1" class="reel">
-                <div id="symbol1">
-                    <img src="./media/symbols/scatter.png" alt="symbol1">
-                </div>
-                <div id="symbol2">Symbol2</div>
-                <div id="symbol3">Symbol3</div>
+        <canvas id="canvas" class="ol-unselectable"></canvas>
+        <section class="bottom-bar">
+            <button class="rules-button">?</button>
+            <button class="bet-down">-</button>
+            <div class="bet-field">
+                <span class="bet-text">BET</span><br>
+                <span class="bet-value">$10</span>
             </div>
-            <span class="vertical-line" style="height: 390px;"></span>
-            <div id="reel2" class="reel">
-                <div id="symbol4">symbol4</div>
-                <div id="symbol5">symbol5</div>
-                <div id="symbol6">Symbol6</div>
-            </div>
-            <span class="vertical-line" style="height: 390px;"></span>
-            <div id="reel3" class="reel">
-                <div id="symbol7">Symbol7</div>
-                <div id="symbol8">Symbol8</div>
-                <div id="symbol9">Symbol9</div>
-            </div>
-            <span class="vertical-line" style="height: 390px;"></span>
-            <div id="reel4" class="reel">
-                <div id="symbol10">Symbol10</div>
-                <div id="symbol11">Symbol11</div>
-                <div id="symbol12">Symbol12</div>
-            </div>
-            <span class="vertical-line" style="height: 390px;"></span>
-            <div id="reel5" class="reel">
-                <div id="symbol13">Symbol13</div>
-                <div id="symbol14">Symbol14</div>
-                <div id="symbol15">Symbol15</div>
-            </div>
-        </section> -->
-
-        <canvas id="canvas" width="750px" height="450px"></canvas>
-
-        <section id="bottom-bar"></section>
+            <button class="bet-up">+</button>
+            <div class="win-box"><span>$1,150</span></div>
+            <button class="spin-button">SPIN</button>
+        </section>
     </div>
     </main>
 
     <footer>
         <div>
-
+            <p class="footer-text">Balance: </p><p class="footer-text">$10,000</p><p id="time" class="footer-text"></p>
         </div>
     </footer>
 
+    <script src="./scripts/server-data.js"></script>
+    <script src="./scripts/server-result.js"></script>
     <script src="./scripts/client.js"></script>
-    <script src="./scripts/server.js"></script>
+    <script src="./scripts/control-elements.js"></script>
+    <script src="./scripts/reels-rotation.js"></script>
     <script src="./scripts/sounds.js"></script>
-    
 </body>
 
 </html>

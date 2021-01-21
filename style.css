@@ -12,7 +12,6 @@ header {
     text-align: center;
     color: white;
     font-size: 30px;
-    margin: 50px;
     text-shadow: 0px 0px 10px white;
 }
 
@@ -43,74 +42,71 @@ header {
     align-items: center;
 }
 
-/* .flex-container {
-    display: -ms-flexbox;
-    display: -webkit-flex;
+canvas {
+    width: 100%;
+}
+
+footer>div {
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 80%;
+    width: 100%;
+    height: 40px;
     display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
-    align-content: stretch;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
     align-items: center;
-    background:
-    linear-gradient(
-      rgba(0, 0, 0, 0.5), 
-      rgba(0, 0, 0, 0.5)
-    );
 }
 
-.flex-container>div {
-    height: 390px;
-    min-height: 400px;
-    width: 170px;
-    min-width: 170px;
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
+.footer-text {
+    display: flex;
+    justify-content: center;
+    padding: 0 15px;
+    font-family: "Lato", Verdana, Helvetica, Arial, sans-serif;
+    color: white;
 }
 
-.reel>div {
-    border: 1px dashed white;
-    height: 130px;
-    min-height: 130px;
-    width: 170px;
-    min-width: 170px;
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
+.bottom-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
 }
 
-.reel>div>img {
+.bottom-bar button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    opacity: 0.8;
+    font-size: 30px;
+}
+
+.bottom-bar .spin-button {
+    width: 100px;
     height: 100%;
 }
 
-span.vertical-line {
-    width: 2px;
-    height: 100%;
-    float: left;
-    background: white;
-    top: 30%;
-    box-shadow: 0px 0px 7px 5px white;
-} */
+.bottom-bar span {
+    opacity: 1;
+    color: white;
+    font-size: 30px;
+}
+
+.bottom-bar .win-box {
+    width: 100%;
+    height: 80px;
+    background-color: #e4685d;
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    text-align: center;
+}
