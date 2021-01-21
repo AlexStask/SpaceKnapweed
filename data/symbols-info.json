@@ -1,0 +1,32 @@
+{
+    "0": {
+        "id": 0,
+        "name": "scatter",
+        "link": "media/symbols/scatter.png"
+    },
+    "1": {
+        "id": 1,
+        "name": "T1",
+        "link": "media/symbols/T1.png"
+    },
+    "2": {
+        "id": 2,
+        "name": "T2",
+        "link": "media/symbols/T2.png"
+    },
+    "3": {
+        "id": 3,
+        "name": "T3",
+        "link": "media/symbols/T3.png"
+    },
+    "4": {
+        "id": 4,
+        "name": "T4",
+        "link": "media/symbols/T4.png"
+    },
+    "5": {
+        "id": 5,
+        "name": "T5",
+        "link": "media/symbols/T5.png"
+    }
+}
